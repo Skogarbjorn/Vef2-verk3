@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
 import type { CategoryToCreate } from "./categories.validate.ts";
-import { type QuerySlugSchema, safeString } from "./validator.ts";
+import { type QuerySlug, safeString } from "./validator.ts";
 
 const prisma = new PrismaClient();
 
-const CategorySchema = z.object({
+const _CategorySchema = z.object({
   id: z.number(),
   title: z
     .string()
@@ -15,7 +15,7 @@ const CategorySchema = z.object({
   slug: z.string().transform(safeString),
 });
 
-type Category = z.infer<typeof CategorySchema>;
+type Category = z.infer<typeof _CategorySchema>;
 
 export async function getCategories(
   limit: number = 10,
@@ -43,7 +43,7 @@ export async function getCategories(
   };
 }
 
-export async function getCategory(slug: QuerySlugSchema): Promise<{
+export async function getCategory(slug: QuerySlug): Promise<{
   id: number;
   title: string;
   slug: string;
@@ -71,7 +71,7 @@ export async function createCategory(
 }
 
 export async function updateCategory(
-  slug: QuerySlugSchema,
+  slug: QuerySlug,
   categoryToCreate: CategoryToCreate,
 ): Promise<Category | null> {
   try {
@@ -92,7 +92,7 @@ export async function updateCategory(
 }
 
 export async function deleteCategory(
-  slug: QuerySlugSchema,
+  slug: QuerySlug,
 ): Promise<{ success: boolean }> {
   try {
     await prisma.categories.delete({

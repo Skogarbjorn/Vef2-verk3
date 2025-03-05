@@ -23,7 +23,7 @@ const QuerySlugSchema = z
   .max(512, "slug must be at most 512 letters")
   .transform(safeString);
 
-export type QuerySlugSchema = z.infer<typeof QuerySlugSchema>;
+export type QuerySlug = z.infer<typeof QuerySlugSchema>;
 
 export function validatePageParams(params: unknown) {
   const result = PageParamsSchema.safeParse(params);

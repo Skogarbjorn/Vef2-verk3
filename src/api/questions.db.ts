@@ -5,7 +5,7 @@ import { safeString } from "./validator.ts";
 
 const prisma = new PrismaClient();
 
-const QuestionSchema = z.object({
+const _QuestionSchema = z.object({
   id: z.number(),
   question: z
     .string()
@@ -15,7 +15,7 @@ const QuestionSchema = z.object({
   categoryId: z.number(),
 });
 
-type Question = z.infer<typeof QuestionSchema>;
+type Question = z.infer<typeof _QuestionSchema>;
 
 export async function getQuestions(
   limit: number = 10,
