@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
-import type { CategoryToCreate } from "./categories.validate.ts";
-import { type QuerySlug, safeString } from "./validator.ts";
+import type { CategoryToCreate } from "./categories.validate.js";
+import { type QuerySlug, safeString } from "./validator.js";
 
 const prisma = new PrismaClient();
 

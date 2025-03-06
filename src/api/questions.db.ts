@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
-import type { QuestionToCreate } from "./questions.validate.ts";
-import { safeString } from "./validator.ts";
+import type { QuestionToCreate } from "./questions.validate.js";
+import { safeString } from "./validator.js";
 
 const prisma = new PrismaClient();
 

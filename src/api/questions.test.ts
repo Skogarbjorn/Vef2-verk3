@@ -1,4 +1,4 @@
-import { validateQuestion } from "./questions.validate.ts";
+import { validateQuestion } from "./questions.validate.js";
 import { describe, expect, it } from "@jest/globals";
 
 describe("questions.validate", () => {

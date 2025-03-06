@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { safeString } from "./validator.ts";
+import { safeString } from "./validator.js";
 
 const AnswerSchema = z.object({
   answer: z

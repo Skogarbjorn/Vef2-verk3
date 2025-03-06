@@ -5,18 +5,18 @@ import {
   getCategories,
   getCategory,
   updateCategory,
-} from "./categories.db.ts";
-import { validateCategory } from "./categories.validate.ts";
-import { validateSlug } from "./validator.ts";
+} from "./categories.db.js";
+import { validateCategory } from "./categories.validate.js";
+import { validateSlug } from "./validator.js";
 import {
   createQuestion,
   getQuestion,
   getQuestions,
   getQuestionsByCategory,
   updateQuestion,
-} from "./questions.db.ts";
-import { validateQuestion } from "./questions.validate.ts";
-import { validatePageParams } from "./validator.ts";
+} from "./questions.db.js";
+import { validateQuestion } from "./questions.validate.js";
+import { validatePageParams } from "./validator.js";
 
 const categories = new Hono();
 

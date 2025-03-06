@@ -1,4 +1,4 @@
-import { validateCategory } from "./categories.validate.ts";
+import { validateCategory } from "./categories.validate.js";
 import { describe, expect, it } from "@jest/globals";
 
 describe("categories.validate", () => {
