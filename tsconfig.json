@@ -11,5 +11,6 @@
     "outDir": "./dist",
     "jsxImportSource": "hono/jsx"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
 }
