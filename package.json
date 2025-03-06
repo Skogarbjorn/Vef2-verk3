@@ -5,6 +5,7 @@
     "node": "22.0.0"
   },
   "scripts": {
+    "pretest": "tsc",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint ./src/**/*.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
