@@ -9,7 +9,7 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint ./src/**/*.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "build": "npx prisma db push"
+    "build": "npx prisma generate && tsc --project tsconfig.prod.json"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.8",
