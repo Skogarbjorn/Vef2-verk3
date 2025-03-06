@@ -195,10 +195,12 @@ export async function updateQuestion(
       question: questionToUpdate.question,
       categoryId: questionToUpdate.categoryId,
       answers: {
-        create: questionToUpdate.answers.map((answer) => ({
-          answer: answer.answer,
-          isCorrect: answer.isCorrect,
-        })),
+        create: questionToUpdate.answers.map(
+          (answer: { answer: string; isCorrect: boolean }) => ({
+            answer: answer.answer,
+            isCorrect: answer.isCorrect,
+          }),
+        ),
       },
     },
     include: {
