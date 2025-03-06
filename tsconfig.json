@@ -10,5 +10,6 @@
     "jsx": "react-jsx",
     "outDir": "./dist",
     "jsxImportSource": "hono/jsx"
-  }
+  },
+  "include": ["src/**/*"]
 }
