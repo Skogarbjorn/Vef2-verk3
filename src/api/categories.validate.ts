@@ -11,14 +11,7 @@ const CategoryToCreateSchema = z.object({
 
 export type CategoryToCreate = z.infer<typeof CategoryToCreateSchema>;
 
-export function validateCategory(category: unknown): z.SafeParseReturnType<
-  {
-    title: string;
-  },
-  {
-    title?: string;
-  }
-> {
+export function validateCategory(category: unknown) {
   const result = CategoryToCreateSchema.safeParse(category);
 
   return result;

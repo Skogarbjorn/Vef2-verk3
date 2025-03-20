@@ -22,24 +22,7 @@ const QuestionToCreateSchema = z.object({
 
 export type QuestionToCreate = z.infer<typeof QuestionToCreateSchema>;
 
-export function validateQuestion(question: unknown): z.SafeParseReturnType<
-  {
-    question: string;
-    categoryId: number;
-    answers: {
-      answer: string;
-      isCorrect: boolean;
-    }[];
-  },
-  {
-    categoryId: number;
-    answers: {
-      isCorrect: boolean;
-      answer?: string;
-    }[];
-    question?: string;
-  }
-> {
+export function validateQuestion(question: unknown) {
   const result = QuestionToCreateSchema.safeParse(question);
 
   return result;
