@@ -32,12 +32,12 @@ export function validateQuestion(question: unknown): z.SafeParseReturnType<
     }[];
   },
   {
-    question: string;
     categoryId: number;
     answers: {
-      answer: string;
       isCorrect: boolean;
+      answer?: string;
     }[];
+    question?: string;
   }
 > {
   const result = QuestionToCreateSchema.safeParse(question);

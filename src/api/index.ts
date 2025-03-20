@@ -17,8 +17,10 @@ import {
 } from "./questions.db.js";
 import { validateQuestion } from "./questions.validate.js";
 import { validatePageParams } from "./validator.js";
+import { cors } from "hono/cors";
 
 const categories = new Hono();
+categories.use(cors());
 
 categories.get("/categories", async (c) => {
   let limit = Number(c.req.query("limit")) || 10;
@@ -40,7 +42,7 @@ categories.get("/categories", async (c) => {
 
   const categories = await getCategories(limit, offset);
 
-  return c.json(categories);
+  return c.json(categories, 200);
 });
 
 categories.get("/categories/:slug", async (c) => {
@@ -88,6 +90,15 @@ categories.post("/category", async (c) => {
 
   const createdCategory = await createCategory(validCategory.data);
 
+  if (!createdCategory) {
+    return c.json(
+      {
+        error: "category already exists",
+      },
+      400,
+    );
+  }
+
   return c.json(createdCategory, 201);
 });
 
@@ -132,6 +143,7 @@ categories.delete("/category/:slug", async (c) => {
   const slugToValidate = c.req.param("slug");
 
   const validSlug = validateSlug(slugToValidate);
+  console.log(validSlug.data);
 
   if (!validSlug.success) {
     return c.json(
@@ -158,6 +170,7 @@ categories.delete("/category/:slug", async (c) => {
 });
 
 const questions = new Hono();
+questions.use(cors());
 
 questions.get("/questions", async (c) => {
   let limit = Number(c.req.query("limit")) || 10;

@@ -17,21 +17,21 @@ model Categories {
   id        Int        @id @default(autoincrement())
   title     String     @unique
   slug      String     @unique
-  Questions Questions[]
+  Questions Questions[] 
 }
 
 model Questions {
   id         Int        @id @default(autoincrement())
   question   String
-  category   Categories @relation(fields: [categoryId], references: [id])
+  category   Categories @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int        
-  answers    Answers[]
+  answers    Answers[] 
 }
 
 model Answers {
   id         Int       @id @default(autoincrement())
   answer     String
   isCorrect  Boolean
-  question   Questions @relation(fields: [questionId], references: [id])
+  question   Questions @relation(fields: [questionId], references: [id], onDelete: Cascade)
   questionId Int       
 }

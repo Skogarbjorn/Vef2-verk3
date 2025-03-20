@@ -59,15 +59,19 @@ export async function getCategory(slug: QuerySlug): Promise<{
 
 export async function createCategory(
   categoryToCreate: CategoryToCreate,
-): Promise<Category> {
-  const createdCategory = await prisma.categories.create({
-    data: {
-      title: categoryToCreate.title,
-      slug: categoryToCreate.title.toLowerCase().replace(" ", "-"),
-    },
-  });
+): Promise<Category | null> {
+  try {
+    const createdCategory = await prisma.categories.create({
+      data: {
+        title: categoryToCreate.title,
+        slug: categoryToCreate.title.toLowerCase().replaceAll(" ", "-"),
+      },
+    });
 
-  return createdCategory;
+    return createdCategory;
+  } catch {
+    return null;
+  }
 }
 
 export async function updateCategory(
@@ -81,7 +85,7 @@ export async function updateCategory(
       },
       data: {
         title: categoryToCreate.title,
-        slug: categoryToCreate.title.toLowerCase().replace(" ", "-"),
+        slug: categoryToCreate.title.toLowerCase().replaceAll(" ", "-"),
       },
     });
 
@@ -94,6 +98,7 @@ export async function updateCategory(
 export async function deleteCategory(
   slug: QuerySlug,
 ): Promise<{ success: boolean }> {
+  console.log(slug);
   try {
     await prisma.categories.delete({
       where: {

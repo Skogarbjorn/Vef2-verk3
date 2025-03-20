@@ -25,13 +25,24 @@ const QuerySlugSchema = z
 
 export type QuerySlug = z.infer<typeof QuerySlugSchema>;
 
-export function validatePageParams(params: unknown) {
+export function validatePageParams(params: unknown): z.SafeParseReturnType<
+  {
+    page: number;
+    limit: number;
+  },
+  {
+    page: number;
+    limit: number;
+  }
+> {
   const result = PageParamsSchema.safeParse(params);
 
   return result;
 }
 
-export function validateSlug(slug: unknown) {
+export function validateSlug(
+  slug: unknown,
+): z.SafeParseReturnType<string, string> {
   const result = QuerySlugSchema.safeParse(slug);
 
   return result;
